@@ -1,27 +1,18 @@
 import React from "react";
-import { useRef, useState } from "react";
-import Fullscreen from "react-full-screen";
+
 
 import "./Toolbar.css";
-let fullScreenRef = useRef(null);
-let [fullScreenMode, setfullScreenMode] = useState(False);
 
 //method to toggle fullscreen
-fullScreenToggler = () => {
-  setfullScreenMode(!fullScreenMode);
-};
 
-function Toolbar() {
+
+class Toolbar extends React.Component {
+  
+  render(){
   return (
-    <div className="">
-      //element to be toggled
-      <FullScreen enabled={fullScreenMode}>
-        <div className="main_page">
-          <button onClick={fullScreenToggler}>FullScreen Mode</button>
-        </div>
-      </FullScreen>
-    </div>
+   <h1>hello</h1>
   );
+  }
 }
 
 export default Toolbar;
