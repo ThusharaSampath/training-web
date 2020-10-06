@@ -10,6 +10,7 @@
     "react": "^16.13.1",
     "react-columns": "^1.2.1",
     "react-dom": "^16.13.1",
+    "react-full-screen": "^0.3.1",
     "react-scripts": "3.4.3"
   },
   "scripts": {

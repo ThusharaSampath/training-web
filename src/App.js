@@ -2,58 +2,41 @@ import React from "react";
 
 import "./App.css";
 import DiaryCard from "./components/DiaryCard/DiaryCard";
-
+import CardContainer from "./components/CardContainer/CardContainer";
+import Toolbar from "./components/Toolbar/Toolbar";
 
 function App() {
-  var dimensions = [
-    { width:800, height: 1200 },
-    { width: 800, height: 600 },
-    { width: 800, height: 800 },
-    { width: 800, height: 600 },
-    { width: 800, height: 1200 },
-    { width: 800, height: 600 },
-    { width: 800, height: 400 },
-    { width: 800, height: 400 },
-    { width: 800, height: 400 },
-    { width: 800, height: 800 },
-  ];
   return (
     <div className="App">
-      <header className="App-header">Header</header>
+      <Toolbar></Toolbar>
       <div class="CardArea">
-      <Columns dimensions={dimensions}>
+        <CardContainer>
         <DiaryCard
-          title="This is title"
-          subtitle="this is subtitle"
-          discription="this is discriptionn
+            title="This is title"
+            subtitle="this is subtitle"
+            discription="this is discriptionn
           . thid discription must be collapsed after it length is excede 100 characters , so lets try"
-        />
-        <DiaryCard
-          title="This is title"
-          subtitle="this is subtitle"
-          discription="this is discription"
-        />
-        <DiaryCard
-          title="This is title"
-          subtitle="this is subtitle"
-          discription="this is discription"
-        />
-        <DiaryCard
-          title="This is title"
-          subtitle="this is subtitle"
-          discription="this is discription"
-        />
-        <DiaryCard
-          title="This is title"
-          subtitle="this is subtitle"
-          discription="this is discription"
-        />
-        <DiaryCard
-          title="This is title"
-          subtitle="this is subtitle"
-          discription="this is discription"
-        />
-        </Columns>
+          />
+           <DiaryCard
+            title="This is title"
+            subtitle="this is subtitle"
+            discription="this is discriptionn
+          . thid discription must be collapsed after it length is excede 100 characters , so lets try"
+          />
+           <DiaryCard
+            title="This is title"
+            subtitle="this is subtitle"
+            discription="this is discriptionn
+          . thid discription must be collapsed after it length is excede 100 characters , so lets try"
+          />
+           <DiaryCard
+            title="This is title"
+            subtitle="this is subtitle"
+            discription="this is discriptionn
+          . thid discription must be collapsed after it length is excede 100 characters , so lets try"
+          />
+        </CardContainer>
+        
       </div>
     </div>
   );

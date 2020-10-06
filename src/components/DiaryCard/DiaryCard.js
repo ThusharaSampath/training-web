@@ -9,6 +9,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
 
+
 class DiaryCard extends React.Component {
   state = {
     shown: true,
@@ -17,6 +18,7 @@ class DiaryCard extends React.Component {
   long =  this.props.discription
   render() {
     return (
+     
       <Card className="card" style={{ backgroundColor: "lightBlue" }}>
         <CardHeader title={this.props.title} subheader={this.props.subtitle} />
 
@@ -40,6 +42,7 @@ class DiaryCard extends React.Component {
           </Button>
         </CardActions>
       </Card>
+     
     );
   }
 }
