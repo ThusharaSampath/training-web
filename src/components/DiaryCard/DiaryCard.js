@@ -23,22 +23,49 @@ class DiaryCard extends React.Component {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button
+          <a
             className="btn"
             onClick={() => this.setState({ shown: !this.state.shown })}
           >
             {this.state.shown ? "Show more" : "show less"}
-          </Button>
-          <Button
+          </a>
+          <a
             className="btn"
             onClick={() => {
               this.props.deleteDiary(this.props.id);
             }}
           >
             Delete
-          </Button>
+          </a>
         </CardActions>
       </Card>
+      // <div className="row">
+      //   <div className="col s12 m6">
+      //     <div className="card light-blue">
+      //       <div className="card-content white-text">
+      //         <span className="card-title">{this.props.title} </span>
+      //         <h5>{this.props.subtitle} </h5>
+      //         <p>{this.state.shown ? this.short : this.long}</p>
+      //       </div>
+      //       <div className="card-action">
+      //         <a
+      //           className="btn"
+      //           onClick={() => this.setState({ shown: !this.state.shown })}
+      //         >
+      //           {this.state.shown ? "Show more" : "show less"}
+      //         </a>
+      //         <a
+      //           className="btn"
+      //           onClick={() => {
+      //             this.props.deleteDiary(this.props.id);
+      //           }}
+      //         >
+      //           Delete
+      //         </a>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
     );
   }
 }
