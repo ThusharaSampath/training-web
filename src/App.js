@@ -3,10 +3,13 @@ import "./App.css";
 import Toolbar from "./components/Toolbar/Toolbar";
 import Forms from "./components/Form/Forms";
 import CardContainer from "./components/CardContainer/CardContainer";
-import firebase from "./Services/firebase";;
+import firebase from "./Services/firebase";
+
 class App extends React.Component {
   state = {
+    currentUser: "user1",
     Diaries: [
+      //this list for keep current Diaries
       {
         id: 1,
         title: "Meeting",
@@ -15,14 +18,18 @@ class App extends React.Component {
           "talk about new building You can add tabs to your cards by adding a dividing cards-tabs div inbetween your header content and your tab content.",
       },
     ],
-    users: [],
+    diaries: [], //this is for store fetch data from firestore
   };
   fetchData = async () => {
     let db = firebase.firestore();
-    let data = await db.collection("Users").get();
+    let data = await db
+      .collection("Users")
+      .doc(this.state.currentUser)
+      .collection("Diaries")
+      .get();
 
     this.setState({
-      users: data.docs.map((doc) => doc.data()),
+      diaries: data.docs.map((doc) => doc.data()),
     });
   };
 
@@ -40,21 +47,26 @@ class App extends React.Component {
     this.setState({ Diaries: Diaries });
   };
   render() {
-    this.fetchData()
+    this.fetchData();
     return (
       <div className="App">
         <Toolbar></Toolbar>
+
         <Forms addDairy={this.addDiary}></Forms>
-        <CardContainer
-          Diaries={this.state.Diaries}
-          deleteDiary={this.deleteDiary}
-        ></CardContainer>
+        <div className="input-field col s6">
+          <CardContainer
+            Diaries={this.state.diaries}
+            deleteDiary={this.deleteDiary}
+          ></CardContainer>
+        </div>
+        {/* for testing */}
         <ul>
-          {this.state.users.map(user=>(
-            <li
-              key ={user.name}>
-                {user.name}
-            </li>
+          {this.state.diaries.map((user) => (
+            <ul key={user.title}>
+              <li>{user.id}</li>
+              <li>{user.title}</li>
+              <li>{user.discription}</li>
+            </ul>
           ))}
         </ul>
       </div>

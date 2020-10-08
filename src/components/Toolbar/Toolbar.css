@@ -9,5 +9,9 @@ nav {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s 0.2s, opacity 0.2s linear;
+    margin-left: 2px;
   }
+}
+.space{
+  margin: 10px;
 }
