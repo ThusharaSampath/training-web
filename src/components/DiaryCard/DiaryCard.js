@@ -22,7 +22,7 @@ class DiaryCard extends React.Component {
             <h6>{this.state.shown ? this.short : this.long}</h6>
           </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions >
           <a
             className="btn"
             onClick={() => this.setState({ shown: !this.state.shown })}

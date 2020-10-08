@@ -8,14 +8,16 @@ class Toolbar extends React.Component {
   render() {
     return (
     
-  <nav>
+  <nav >
   <div class="nav-wrapper">
-    <a  class="brand-logo">Logo</a>
-    <ul class="right">
-    <li><a > <i class="material-icons">search</i></a></li>
+    <div className="left Hide" >
+      <a  className="brand-logo ">Dear Diary </a>
+    </div>
+    <ul className="right">
+    <li><a > <i className="material-icons">search</i></a></li>
       <li><input></input></li>
-      <li><a > <i class="material-icons">notifications_none</i></a></li>
-      <li><a > <i class="material-icons">account_circle</i></a></li>
+      <li><a > <i className="material-icons">notifications_none</i></a></li>
+      <li><a > <i className="material-icons">account_circle</i></a></li>
     </ul>
   </div>
 </nav>

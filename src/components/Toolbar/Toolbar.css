@@ -1,3 +1,13 @@
-nav{
-    background-color: rgba(0, 0,0,0);
+nav {
+  background-color: rgba(0, 0, 0, 0);
+}
+.brand-logo {
+  margin-left: 5px;
+}
+@media only screen and (max-width: 600px) {
+  .Hide {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.2s, opacity 0.2s linear;
+  }
 }
