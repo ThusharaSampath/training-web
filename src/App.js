@@ -3,6 +3,7 @@ import "./App.css";
 import Toolbar from "./components/Toolbar/Toolbar";
 import Forms from "./components/Form/Forms";
 import CardContainer from "./components/CardContainer/CardContainer";
+import firebase  from "./Services/firebase";
 class App extends React.Component {
   state = {
     Diaries: [
