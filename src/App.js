@@ -8,16 +8,6 @@ import firebase from "./Services/firebase";
 class App extends React.Component {
   state = {
     currentUser: "user1",
-    Diaries: [
-      //this list for keep current Diaries
-      {
-        id: 1,
-        title: "Meeting",
-        subtitle: "meet with mr.jone",
-        discription:
-          "talk about new building You can add tabs to your cards by adding a dividing cards-tabs div inbetween your header content and your tab content.",
-      },
-    ],
     diaries: [], //this is for store fetch data from firestore
   };
   fetchData = async () => {
@@ -32,12 +22,24 @@ class App extends React.Component {
       diaries: data.docs.map((doc) => doc.data()),
     });
   };
-
+  pushData = async (diary) => {
+    let db = firebase.firestore();
+    let data = await db
+      .collection("Users")
+      .doc(this.state.currentUser)
+      .collection("Diaries")
+      .add({
+        id: this.state.diaries.length + 1,
+        title: diary.title,
+        subtitle: this.state.currentUser,
+        discription: diary.discription,
+      });
+  };
   addDiary = (diary) => {
     diary.id = this.state.Diaries.length + 1;
     let Diaries = [...this.state.Diaries, diary];
     this.setState({
-      Diaries: Diaries,
+      diaries: Diaries,
     });
   };
   deleteDiary = (id) => {
@@ -52,23 +54,13 @@ class App extends React.Component {
       <div className="App">
         <Toolbar></Toolbar>
 
-        <Forms addDairy={this.addDiary}></Forms>
+        <Forms pushData={this.pushData}></Forms>
         <div className="input-field col s6">
           <CardContainer
             Diaries={this.state.diaries}
             deleteDiary={this.deleteDiary}
           ></CardContainer>
         </div>
-        {/* for testing */}
-        <ul>
-          {this.state.diaries.map((user) => (
-            <ul key={user.title}>
-              <li>{user.id}</li>
-              <li>{user.title}</li>
-              <li>{user.discription}</li>
-            </ul>
-          ))}
-        </ul>
       </div>
     );
   }

@@ -2,14 +2,10 @@ import React from "react";
 import "./Forms.css";
 import Fab from "@material-ui/core/Fab";
 import TextField from "@material-ui/core/TextField";
+
+
 class Forms extends React.Component {
-  
-  
-  // handleChange = () => {
-  //   this.setState({
-  //     hide:false
-  //   })
-  // };
+
   state = {
     title: "",
     discription: "",
@@ -17,6 +13,7 @@ class Forms extends React.Component {
     error: "",
     hide: true,
   };
+
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value,
@@ -25,11 +22,11 @@ class Forms extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.title.length > 0 && this.state.discription.length > 0) {
-      this.props.addDairy(this.state);
+      this.props.pushData(this.state);
       this.setState({
         title: "",
         discription: "",
-        hide:true
+        hide: true,
       });
     } else {
       if (this.state.title.length > 0) {
@@ -52,7 +49,7 @@ class Forms extends React.Component {
   render() {
     return (
       <div className="container" onMouseLeave={this.collapse}>
-        <form onSubmit={this.handleSubmit} >
+        <form onSubmit={this.handleSubmit}>
           <div className="input-field col s6">
             <TextField
               id="title"
@@ -64,7 +61,6 @@ class Forms extends React.Component {
               onFocus={this.expand}
               onMouseOver={this.expand}
               multiline
-              
             />
           </div>
 
