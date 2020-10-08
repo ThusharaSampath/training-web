@@ -1,12 +1,21 @@
 import React from "react";
 import "./Forms.css";
-
+import Fab from "@material-ui/core/Fab";
+import TextField from "@material-ui/core/TextField";
 class Forms extends React.Component {
+  
+  
+  // handleChange = () => {
+  //   this.setState({
+  //     hide:false
+  //   })
+  // };
   state = {
     title: "",
     discription: "",
     Color: "black",
     error: "",
+    hide: true,
   };
   handleChange = (e) => {
     this.setState({
@@ -20,6 +29,7 @@ class Forms extends React.Component {
       this.setState({
         title: "",
         discription: "",
+        hide:true
       });
     } else {
       if (this.state.title.length > 0) {
@@ -29,37 +39,57 @@ class Forms extends React.Component {
       }
     }
   };
+  expand = (e) => {
+    this.setState({
+      hide: false,
+    });
+  };
+  collapse = (e) => {
+    this.setState({
+      hide: true,
+    });
+  };
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
+      <div className="container" onMouseLeave={this.collapse}>
+        <form onSubmit={this.handleSubmit} >
           <div className="input-field col s6">
-            <input
-              required
-              placeholder="Submit New"
+            <TextField
               id="title"
-              onChange={this.handleChange}
+              label="Submit New"
               value={this.state.title}
+              onChange={this.handleChange}
+              variant="outlined"
+              fullWidth
+              onFocus={this.expand}
+              onMouseOver={this.expand}
+              multiline
+              
             />
           </div>
 
           <div className="input-field col s6">
-            <textarea
-              required
-              placeholder="Enter Discription"
+            <TextField
               id="discription"
-              onChange={this.handleChange}
+              label="Description"
               value={this.state.discription}
+              onChange={this.handleChange}
+              variant="outlined"
+              fullWidth
+              multiline
+              hidden={this.state.hide}
             />
           </div>
-          <button
-            className="waves-effect waves-light btn"
-            variant="contained"
+          <Fab
+            variant="outlined"
+            size="small"
             color="primary"
+            aria-label="Add"
             onClick={this.handleSubmit}
+            hidden={this.state.hide}
           >
             Submit
-          </button>
+          </Fab>
         </form>
       </div>
     );

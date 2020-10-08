@@ -9,7 +9,7 @@ class Toolbar extends React.Component {
     return (
     
   <nav >
-  <div class="nav-wrapper">
+  <div className="nav-wrapper">
     <div className="left Hide" >
       <a  className="brand-logo ">Dear Diary </a>
     </div>
