@@ -1,91 +1,25 @@
 import React from "react";
 import "./App.css";
 import Toolbar from "./components/Toolbar/Toolbar";
-import Forms from "./components/Form/Forms";
-import CardContainer from "./components/CardContainer/CardContainer";
-import firebase from "./Services/firebase";
-import LinearProgress from '@material-ui/core/LinearProgress';
+import Home from "./View/Home/Home";
+import Login from "./View/Auth/Login";
+import SignUp from "./View/Auth/SignUp";
+import Container from "@material-ui/core/Container";
+import { BrowserRouter, Route } from "react-router-dom";
+import { AuthProvider } from "./Services/Auth";
+import  PrivateRoute  from "./Services/PrivateRoute";
+
 class App extends React.Component {
-  state = {
-    currentUser: "user1",
-    diaries: [], //this is for store fetch data from firestore
-    spinnerHide: true
-  };
-  fetchData = async () => {
-    this.setState({
-      spinnerHide:false
-    });
-    let db = firebase.firestore();
-    let data = await db
-      .collection("Users")
-      .doc(this.state.currentUser)
-      .collection("Diaries")
-      .get();
-
-    this.setState({
-      diaries: data.docs.map((doc) => doc.data()),
-      spinnerHide:true
-    });
-   
-  };
-  pushData = async (diary) => {
-    let db = firebase.firestore();
-    let data = await db
-      .collection("Users")
-      .doc(this.state.currentUser)
-      .collection("Diaries")
-      .add({
-        id: this.state.diaries.length + 1,
-        title: diary.title,
-        subtitle: this.state.currentUser,
-        discription: diary.discription,
-      });
-      this.fetchData();
-  };
-  deleteData = async (id) => {
-
-    let db = firebase.firestore();
-    let data = await db
-      .collection("Users")
-      .doc(this.state.currentUser)
-      .collection("Diaries")
-      .where("id", "==", id).get()
-      .then(querySnapshot => {
-          querySnapshot.docs[0].ref.delete();
-      });
-      this.fetchData();
-  };
-  // addDiary = (diary) => {
-  //   diary.id = this.state.Diaries.length + 1;
-  //   let Diaries = [...this.state.Diaries, diary];
-  //   this.setState({
-  //     diaries: Diaries,
-  //   });
-  // };
-  // deleteDiary = (id) => {
-  //   const Diaries = this.state.Diaries.filter((diary) => {
-  //     return diary.id !== id;
-  //   });
-  //   this.setState({ Diaries: Diaries });
-  // };
-componentDidMount() {
-  this.fetchData()
-}
   render() {
-   
     return (
-      <div className="App">
-        <Toolbar></Toolbar>
-        
-        <Forms pushData={this.pushData}></Forms>
-        <LinearProgress hidden = {this.state.spinnerHide}></LinearProgress>
-        <div className="input-field col s6">
-          <CardContainer
-            Diaries={this.state.diaries}
-            deleteDiary={this.deleteData}
-          ></CardContainer>
-        </div>
-      </div>
+      <BrowserRouter>
+        <Container className="App">
+          <Toolbar></Toolbar>
+          <PrivateRoute exact path="/home" component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
+        </Container>
+      </BrowserRouter>
     );
   }
 }

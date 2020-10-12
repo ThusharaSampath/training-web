@@ -6,6 +6,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import Fab from "@material-ui/core/Fab";
+import useStyles from "../ComponentStyles";
+import { withStyles } from "@material-ui/core/styles";
 
 class DiaryCard extends React.Component {
   state = {
@@ -14,11 +16,16 @@ class DiaryCard extends React.Component {
   short = this.props.discription.substring(0, 100) + " ...";
   long = this.props.discription;
   render() {
+    const { classes } = this.props;
     return (
-      <Card className="card" style={{ backgroundColor: "lightBlue" }}>
-        <CardHeader title={this.props.title} subheader="Mr User" />
+      <Card className={classes.DiaryCardStyle}>
+        <CardHeader
+          className="left"
+          title={this.props.title}
+          subheader="Mr User"
+        />
         <CardActionArea>
-          <CardContent>
+          <CardContent className="left">
             <h6>{this.state.shown ? this.short : this.long}</h6>
           </CardContent>
         </CardActionArea>
@@ -28,10 +35,12 @@ class DiaryCard extends React.Component {
             size="small"
             aria-label="Add"
             onClick={() => this.setState({ shown: !this.state.shown })}
+            className={classes.btn}
           >
             {this.state.shown ? "Show more" : "show less"}
           </Fab>
           <Fab
+            className={classes.btn}
             variant="outlined"
             size="small"
             aria-label="Add"
@@ -43,9 +52,8 @@ class DiaryCard extends React.Component {
           </Fab>
         </CardActions>
       </Card>
-     
     );
   }
 }
 
-export default DiaryCard;
+export default withStyles(useStyles)(DiaryCard);

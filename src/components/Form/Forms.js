@@ -4,6 +4,11 @@ import Fab from "@material-ui/core/Fab";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Snackbar from "@material-ui/core/Snackbar";
+import FormControl from "@material-ui/core/FormControl";
+import useStyles from "../ComponentStyles";
+import { withStyles } from "@material-ui/core/styles";
+import Collapse from "@material-ui/core/Collapse";
+import Fade from "@material-ui/core/Fade";
 
 class Forms extends React.Component {
   state = {
@@ -45,7 +50,7 @@ class Forms extends React.Component {
         hide: true,
       });
     } else {
-      this.handleOpen()
+      this.handleOpen();
       if (this.state.title.length > 0) {
         console.log("Missing Discription");
       } else {
@@ -65,53 +70,66 @@ class Forms extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <div className="container" onMouseLeave={this.collapse}>
-        <form onSubmit={this.handleSubmit}>
+        <FormControl fullWidth onSubmit={this.handleSubmit}>
           <div className="container">
             <Grid container spacing={1}>
-              <Grid item xs>
+              <Grid item xs className="left">
                 <TextField
                   id="title"
-                  label="Submit New"
+                  placeholder="  Submit New"
                   value={this.state.title}
                   onChange={this.handleChange}
-                  variant="outlined"
+                  InputProps={{ disableUnderline: true }}
                   fullWidth
                   onFocus={this.expand}
                   onMouseOver={this.expand}
                   multiline
+                  required
+                  error={this.state.open}
+                  className={classes.textIpTitle}
                 />
               </Grid>
-              <Grid item xs={2}>
-                <Fab
-                  variant="outlined"
-                  size="medium"
-                  color="primary"
-                  style={{ width: "80px" }}
-                  aria-label="Add"
-                  onClick={(this.handleSubmit)}
-                  hidden={this.state.hide}
-                >
-                  Submit
-                </Fab>
-              </Grid>
+              <Fade in={!this.state.hide}>
+                <Grid item xs={2}>
+                  <Fab
+                    variant="outlined"
+                    size="medium"
+                    color="primary"
+                    style={{ width: "80px" }}
+                    aria-label="Add"
+                    onClick={this.handleSubmit}
+                    hidden={this.state.hide}
+                    className={classes.submitBtn}
+                  >
+                    Submit
+                  </Fab>
+                </Grid>
+              </Fade>
             </Grid>
             <br></br>
-            <Grid item xs={12}>
-              <TextField
-                id="discription"
-                label="Description"
-                value={this.state.discription}
-                onChange={this.handleChange}
-                variant="outlined"
-                fullWidth
-                multiline
-                hidden={this.state.hide}
-              />
-            </Grid>
+            <Collapse in={!this.state.hide}>
+              <Grid item xs={12}>
+                <TextField
+                  id="discription"
+                  required
+                  placeholder="  Description"
+                  value={this.state.discription}
+                  onChange={this.handleChange}
+                  fullWidth
+                  multiline
+                  hidden={this.state.hide}
+                  style={{ height: "100px", opacity: "0.4" }}
+                  error={this.state.open}
+                  className={classes.textIpDicpt}
+                  InputProps={{ disableUnderline: true }}
+                />
+              </Grid>{" "}
+            </Collapse>
           </div>
-        </form>
+        </FormControl>
         <Snackbar
           anchorOrigin={{
             vertical: "top",
@@ -123,10 +141,10 @@ class Forms extends React.Component {
           onClose={this.handleClose}
           message="PLEASE FILL BOTH FIELD TO ADD A NEW DIARY"
           colo
-        >
-      </Snackbar>
+        ></Snackbar>
       </div>
     );
   }
 }
-export default Forms;
+
+export default withStyles(useStyles)(Forms);

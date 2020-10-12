@@ -11,7 +11,8 @@ body {
     rgba(4, 184, 204, 1) 0%,
     rgba(1, 114, 240, 1) 82%,
     rgba(1, 148, 254, 1) 100%
-  );
+  )fixed;
+  /* -webkit-gradient(linear, left top, left bottom, from(#fff), to(#cbccc8)) fixed; */
 }
 
 code {
