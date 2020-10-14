@@ -7,6 +7,7 @@ const initState = {
 };
 
 const DairyReducer = (state = initState, action) => {
+  // console.log(state)
   switch (action.type) {
     case "ADD_DIARY":
       console.log("created", action.diary);

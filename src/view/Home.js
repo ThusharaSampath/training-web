@@ -6,13 +6,15 @@ import CardContainer from "../components/diary/DiaryCardContainer";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import useStyles from "../theme/ComponentStyles";
 import { withStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 export class Home extends Component {
  
   static propTypes = {};
   state = {
     currentUser: "user1",
-    diaries: [], //this is for store fetch data from firestore
+    diaries: [],
     spinnerHide: true,
   };
 
@@ -67,7 +69,9 @@ export class Home extends Component {
 //   }
 
   render() {
-   //const { classes } = this.props;
+   const { auth } = this.state.props;
+  if(!auth.id) return <Redirect to="/signin" />
+  console.log(auth) 
     return (
       <div className="container" style={{ alignItems:"center",padding:"2vw 2vh",textAlign: "center"}}>
         <br></br>
@@ -89,4 +93,11 @@ export class Home extends Component {
   }
 }
 
-export default withStyles(useStyles)(Home)
+const mapStateToProps = (state) => {
+  return {
+    //diaries: state.diaryRuducer.diaries,
+   auth:state.firebase.auth
+  };
+};
+
+export default connect(mapStateToProps)(withStyles(useStyles)(Home))
