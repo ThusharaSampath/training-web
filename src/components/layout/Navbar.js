@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = (props) => {
   const classes = useStyles();
 const {auth} = props
+// console.log(props)
 const links = auth.uid ?  <SignInLinks className={classes.space} />:<SignOutLinks className={classes.space} />
   return (
     <div className={classes.root}>

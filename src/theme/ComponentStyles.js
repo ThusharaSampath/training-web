@@ -7,6 +7,7 @@ const useStyles = (theme) => ({
     overflow: "hidden",
     width: "325px",
     backgroundColor: "lightskyblue",
+    
   },
   btn: {
     backgroundColor: "lightskyblue",
@@ -15,37 +16,35 @@ const useStyles = (theme) => ({
   // Form styles
   submitBtn: {
     width: "120%",
-    height:"20px",
-    borderRadius:"25px"
-
+    height: "20px",
+    borderRadius: "25px",
   },
-  container:{
-    width:"80%",
-    alignItems:"center"
+  container: {
+    width: "80%",
+    alignItems: "center",
   },
   textIpTitle: {
-    padding:"5px",
+    padding: "5px",
     borderRadius: "25px",
     backgroundColor: "lightskyblue",
     opacity: "0.5",
     width: "60%",
     transition: "width 1s",
     borderBottom: "none",
-    
+
     "&:hover": {
       width: "100%",
     },
     "&:hover .textIpDicpt": {
-        width: "50%",
-      },
+      width: "50%",
+    },
   },
   textIpDicpt: {
-    padding:"5px",
+    padding: "5px",
     borderRadius: "25px",
     backgroundColor: "lightskyblue",
     opacity: "0.5",
     borderBottom: "none",
-    
   },
   head: {
     color: "white",

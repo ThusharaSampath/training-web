@@ -14,7 +14,7 @@ import LOGO from "../../img/logo.svg";
 import useStyles from "../../theme/Style";
 import { connect } from "react-redux";
 import { SignInAction } from "../../redux/actions/AuthActions";
-import Snackbar from "@material-ui/core/Snackbar";
+import { Redirect } from "react-router-dom";
 
 class SignIn extends Component {
   state = {
@@ -44,6 +44,7 @@ class SignIn extends Component {
   // }
   handleSingIn = (e) => {
     //console.log(this.state);
+    e.preventDefault();
     this.props.SignInAction(this.state);
   };
   handleChange = (e) => {
@@ -53,8 +54,9 @@ class SignIn extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { authErr } = this.props;
+    const { classes, authErr, auth } = this.props;
+    if (auth.uid) return <Redirect to="/home"></Redirect>;
+    
     return (
       <Container className={classes.root}>
         <span>
@@ -119,28 +121,19 @@ class SignIn extends Component {
                 </Grid>
               </Grid>
             </CardActions>
+            {authErr ? <p className={classes.redText}>{authErr}</p> : null}
           </Card>
         </FormControl>
-        <div>{(authErr==='login failed') ? (<Snackbar
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "center",
-          }}
-          severity="error"
-          open={this.state.open}
-          autoHideDuration={4000}
-          onClose={this.handleClose}
-          message="oops! Please check credintials and try again!"
-        ></Snackbar>):null}</div>
       </Container>
     );
   }
 }
-const mapStateToProps =(state)=>{
-  return{
-    authErr:state.authReducer.authErr
-  }
-}
+const mapStateToProps = (state) => {
+  return {
+    authErr: state.authReducer.authErr,
+    auth: state.firebase.auth,
+  };
+};
 const matchDispatchToProps = (dispatch) => {
   return {
     SignInAction: (credintials) => dispatch(SignInAction(credintials)),
