@@ -14,9 +14,15 @@ const useStyles = (theme) => ({
   },
   // Form styles
   submitBtn: {
-    width: "90%",
-  },
+    width: "120%",
+    height:"20px",
+    borderRadius:"25px"
 
+  },
+  container:{
+    width:"80%",
+    alignItems:"center"
+  },
   textIpTitle: {
     padding:"5px",
     borderRadius: "25px",

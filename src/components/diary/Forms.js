@@ -1,19 +1,21 @@
 import React from "react";
-import "./Forms.css";
+// import "./Forms.css";
 import Fab from "@material-ui/core/Fab";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Snackbar from "@material-ui/core/Snackbar";
 import FormControl from "@material-ui/core/FormControl";
-import useStyles from "../ComponentStyles";
+import useStyles from "../../theme/ComponentStyles";
 import { withStyles } from "@material-ui/core/styles";
 import Collapse from "@material-ui/core/Collapse";
 import Fade from "@material-ui/core/Fade";
+import { addDairy } from "../../redux/actions/DiaryActions";
+import { connect} from "react-redux";
 
 class Forms extends React.Component {
   state = {
     title: "",
-    discription: "",
+    description: "",
     Color: "black",
     error: "",
     hide: true,
@@ -42,17 +44,18 @@ class Forms extends React.Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.title.length > 0 && this.state.discription.length > 0) {
-      this.props.pushData(this.state);
+    if (this.state.title.length > 0 && this.state.description.length > 0) {
+      //this.props.pushData(this.state);
+      this.props.addDairy(this.state);
       this.setState({
         title: "",
-        discription: "",
+        description: "",
         hide: true,
       });
     } else {
       this.handleOpen();
       if (this.state.title.length > 0) {
-        console.log("Missing Discription");
+        console.log("Missing description");
       } else {
         console.log("Missing title");
       }
@@ -72,7 +75,7 @@ class Forms extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="container" onMouseLeave={this.collapse}>
+      <div className={classes.container} onMouseLeave={this.collapse}>
         <FormControl fullWidth onSubmit={this.handleSubmit}>
           <div className="container">
             <Grid container spacing={1}>
@@ -95,7 +98,6 @@ class Forms extends React.Component {
               <Fade in={!this.state.hide}>
                 <Grid item xs={2}>
                   <Fab
-                    variant="outlined"
                     size="medium"
                     color="primary"
                     style={{ width: "80px" }}
@@ -113,10 +115,10 @@ class Forms extends React.Component {
             <Collapse in={!this.state.hide}>
               <Grid item xs={12}>
                 <TextField
-                  id="discription"
+                  id="description"
                   required
                   placeholder="  Description"
-                  value={this.state.discription}
+                  value={this.state.description}
                   onChange={this.handleChange}
                   fullWidth
                   multiline
@@ -140,11 +142,15 @@ class Forms extends React.Component {
           autoHideDuration={4000}
           onClose={this.handleClose}
           message="PLEASE FILL BOTH FIELD TO ADD A NEW DIARY"
-          colo
         ></Snackbar>
       </div>
     );
   }
 }
 
-export default withStyles(useStyles)(Forms);
+const mapDispatchTProps = (dispatch) => {
+  return {
+    addDairy: (diary) => dispatch(addDairy(diary)),
+  };
+};
+export default connect(null, mapDispatchTProps)(withStyles(useStyles)(Forms));

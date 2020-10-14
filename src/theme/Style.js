@@ -19,6 +19,11 @@ const useStyles = (theme) => ({
       color: "rgb(0, 158, 231)",
       fontSize: "xx-large",
     },
+    
+    container:{
+      width:"80%",
+      alignItems:"center"
+    },
     pos: {
       marginBottom: 12,
     },

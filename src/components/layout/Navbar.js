@@ -3,11 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import LOGO from "../logo.svg";
-
+import LOGO from "../../img/logo.svg";
+import { Link } from "react-router-dom";
+import SignInLinks from "./SignInLinks";
+import SignOutLinks from "./SignOutLinks";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
   action: {
     float: "right",
+    display: "flex",
+    right: "0",
   },
   logoS: {
     height: "20px",
@@ -35,9 +39,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+const NavBar = (props) => {
   const classes = useStyles();
-
+const {auth} = props
+const links = auth.uid ?  <SignInLinks className={classes.space} />:<SignOutLinks className={classes.space} />
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
@@ -50,15 +55,29 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-          <img src={LOGO} className={classes.logoS}></img> Dear-Dairy
-          </Typography>
-
+          <Link to="/home">
+            <Typography variant="h6" className={classes.title}>
+              <img
+                src={LOGO}
+                className={classes.logoS}
+                alt="just floating logo"
+              ></img>{" "}
+              Dear-Dairy
+            </Typography>
+          </Link>
           <div className={classes.action}>
-            <Button color="inherit">Login</Button>
+            {links}
           </div>
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
+const mapStateToProps = (state) => {
+  
+  return {
+    auth: state.firebase.auth
+  };
+};
+
+export default connect(mapStateToProps)(NavBar);
