@@ -49,12 +49,12 @@ const MenuAppBar = (props) => {
     setAnchorEl(null);
     setAnchorN(null);
   };
-  const { auth,  } = props;
+  const { auth,profile  } = props;
   //const { auth, profile } = props; profile has access to user data
   const links = auth.uid ? (
-    <SignInLinks className={classes.space} handleClose={handleClose} />
+    <SignInLinks className={classes.space} handleClose={handleClose} name={profile.name }/>
   ) : (
-    <SignOutLinks className={classes.space} handleClose={handleClose} />
+    <SignOutLinks className={classes.space} handleClose={handleClose} name={profile.name }/>
   );
   return (
     <div className={classes.root}>

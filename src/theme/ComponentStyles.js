@@ -23,26 +23,32 @@ const useStyles = (theme) => ({
   },
   // Form styles
   submitBtn: {
-    width: "150%",
+    width: "100px",
     height: "20px",
     borderRadius: "25px",
-    //marginLeft:"5px"
+    Right:"25px",
   },
   form: {
-   // backgroundColor: "black",
+    //backgroundColor: "black",
     alignItems: "left",
     textAlingment: "left",
   },
   left: {
     textAlign: "left",
     left: "0px",
+    //backgroundColor: "red",
+  },
+  right:{
+    //backgroundColor: "blue",
+    textAlign: "right",
   },
   container: {
-    width: "90%",
+    width: "92%",
     alignItems: "left",
     textAlingment: "left",
     margin:"25px",
-    //backgroundColor: "green",
+   
+   // backgroundColor: "green",
   },
   date: {
     textAlign: "left",
@@ -56,9 +62,10 @@ const useStyles = (theme) => ({
     width: "60%",
     transition: "width 1s",
     borderBottom: "none",
-    leftMargin: "0px",
+    marginLeft: "0px",
+    marginRight: "5px",
     "&:hover": {
-      width: "100%",
+      width: "95%",
     },
   },
   textIpDicpt: {

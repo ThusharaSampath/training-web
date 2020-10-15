@@ -82,7 +82,7 @@ class Forms extends React.Component {
         <FormControl fullWidth onSubmit={this.handleSubmit} className={classes.form} >
           <div className="container">
             <Grid container spacing={1}>
-              <Grid item xs={10} className={classes.left} >
+              <Grid item xs={9} className={classes.left} >
                 <TextField
                   id="title"
                   placeholder="  Submit New"
@@ -99,12 +99,11 @@ class Forms extends React.Component {
                 />
               </Grid>
               
-                <Grid item xs={2}>
+                <Grid item xs={3} className={classes.right}>
                 <Fade in={!this.state.hide}>
                   <Fab
-                    size="medium"
+                   size="medium"
                     color="primary"
-                    style={{ width: "80px" }}
                     aria-label="Add"
                     onClick={this.handleSubmit}
                     hidden={this.state.hide}

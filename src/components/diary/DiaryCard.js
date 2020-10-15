@@ -8,7 +8,7 @@ import Fab from "@material-ui/core/Fab";
 import useStyles from "../../theme/ComponentStyles";
 import { withStyles } from "@material-ui/core/styles";
 import moment from "moment";
-
+import Divider from '@material-ui/core/Divider';
 
 class DiaryCard extends React.Component {
   state = {
@@ -27,6 +27,7 @@ class DiaryCard extends React.Component {
           title={this.props.title}
           subheader={this.props.subtitle}
         />
+        <Divider/>
         <CardActionArea>
           <CardContent className={classes.content}>
             <p>{this.state.shown ? this.short : this.long}</p>

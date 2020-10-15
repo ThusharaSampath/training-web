@@ -22,14 +22,14 @@ export class Home extends Component {
     return (
       <div
         className="container"
-        style={{
-          alignItems: "center",
-          padding: "2vw 2vh",
-          textAlign: "center",
-        }}
+        // style={{
+        //   alignItems: "center",
+        //   padding: "2vw 2vh",
+        //   textAlign: "center",
+        // }}
       >
         <br></br>
-        <h1 style={{ color: "white" }}>HOME</h1>
+        <h1 style={{ color: "white",opacity:"0.6",marginLeft:"25px" }}>HOME</h1>
         <Forms></Forms>
         <LinearProgress hidden={this.state.spinnerHide}></LinearProgress>
         <div>
