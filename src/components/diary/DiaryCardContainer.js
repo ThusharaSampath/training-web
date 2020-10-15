@@ -7,9 +7,10 @@ import { Redirect } from "react-router-dom";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Grid from "@material-ui/core/Grid";
 
+
 class DiaryCardContainer extends Component {
   render() {
-    const { diaries, auth } = this.props;
+    const { diaries, auth, } = this.props;
     console.log("==>", auth);
     if (!auth.uid) return <Redirect to="/signin"></Redirect>;
 

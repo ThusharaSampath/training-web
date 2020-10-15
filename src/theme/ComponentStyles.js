@@ -8,34 +8,45 @@ const useStyles = (theme) => ({
     width: "325px",
     //minWidth: "200px",
     backgroundColor: "lightskyblue",
-   // float:"right" 
+    // float:"right"
   },
   btn: {
     backgroundColor: "lightskyblue",
     boxShadow: "none",
   },
-  title:{
+  title: {
     textAlign: "left",
     fontSize: "xx-large",
   },
-  content:{
+  content: {
     textAlign: "left",
-    
   },
   // Form styles
   submitBtn: {
-    width: "120%",
+    width: "150%",
     height: "20px",
     borderRadius: "25px",
+    //marginLeft:"5px"
+  },
+  form: {
+   // backgroundColor: "black",
+    alignItems: "left",
+    textAlingment: "left",
+  },
+  left: {
+    textAlign: "left",
+    left: "0px",
   },
   container: {
-    width: "80%",
+    width: "90%",
     alignItems: "left",
-    textAlingment:"left",
+    textAlingment: "left",
+    margin:"25px",
+    //backgroundColor: "green",
   },
-  date:{
+  date: {
     textAlign: "left",
-    marginLeft:"10px",
+    marginLeft: "10px",
   },
   textIpTitle: {
     padding: "5px",
@@ -45,12 +56,9 @@ const useStyles = (theme) => ({
     width: "60%",
     transition: "width 1s",
     borderBottom: "none",
-    left:"0",
+    leftMargin: "0px",
     "&:hover": {
       width: "100%",
-    },
-    "&:hover .textIpDicpt": {
-      width: "50%",
     },
   },
   textIpDicpt: {

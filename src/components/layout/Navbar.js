@@ -11,6 +11,8 @@ import { connect } from "react-redux";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,14 +36,18 @@ const useStyles = makeStyles((theme) => ({
 const MenuAppBar = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
+  const [anchorN, setAnchorN] = React.useState(null);
+  const openM = Boolean(anchorEl);
+  const openN = Boolean(anchorN);
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  const handleNotificationMenu= (event) => {
+    setAnchorN(event.currentTarget);
+  };
   const handleClose = () => {
     setAnchorEl(null);
+    setAnchorN(null);
   };
   const { auth,  } = props;
   //const { auth, profile } = props; profile has access to user data
@@ -63,7 +69,40 @@ const MenuAppBar = (props) => {
            
             Dear-Diary
           </Typography>
-          <NotificationsIcon />
+          
+          {auth.uid && (
+            <div>
+              <IconButton
+                aria-label="notifications"
+                aria-controls="notifications"
+                aria-haspopup="true"
+                onClick={handleNotificationMenu}
+                color="inherit"
+              >
+                <NotificationsIcon />
+              </IconButton>
+              <Menu
+                id="notifications"
+                anchorEl={anchorN}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={openN}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Message 1</MenuItem>
+                <MenuItem onClick={handleClose}>Message 2</MenuItem>
+                <MenuItem onClick={handleClose}>Message 2</MenuItem>
+                <MenuItem onClick={handleClose}>Message 2</MenuItem>
+              </Menu>
+            </div>
+          )}
           {auth.uid && (
             <div>
               <IconButton
@@ -87,7 +126,7 @@ const MenuAppBar = (props) => {
                   vertical: "top",
                   horizontal: "right",
                 }}
-                open={open}
+                open={openM}
                 onClose={handleClose}
               >
                 {links}

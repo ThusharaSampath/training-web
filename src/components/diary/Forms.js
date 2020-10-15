@@ -11,7 +11,7 @@ import Collapse from "@material-ui/core/Collapse";
 import Fade from "@material-ui/core/Fade";
 import { addDairy } from "../../redux/actions/DiaryActions";
 import { connect} from "react-redux";
-
+import Container from '@material-ui/core/Container';
 
 
 class Forms extends React.Component {
@@ -77,12 +77,12 @@ class Forms extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container spacing={3} style={{ margin: "20px", padding: "20px" ,width:"100%"}}>
-      <div className={classes.container} onMouseLeave={this.collapse}>
-        <FormControl fullWidth onSubmit={this.handleSubmit}>
+      <Container   className={classes.container} onMouseLeave={this.collapse}>
+      
+        <FormControl fullWidth onSubmit={this.handleSubmit} className={classes.form} >
           <div className="container">
             <Grid container spacing={1}>
-              <Grid item xs className="left">
+              <Grid item xs={10} className={classes.left} >
                 <TextField
                   id="title"
                   placeholder="  Submit New"
@@ -98,8 +98,9 @@ class Forms extends React.Component {
                   className={classes.textIpTitle}
                 />
               </Grid>
-              <Fade in={!this.state.hide}>
+              
                 <Grid item xs={2}>
+                <Fade in={!this.state.hide}>
                   <Fab
                     size="medium"
                     color="primary"
@@ -110,9 +111,9 @@ class Forms extends React.Component {
                     className={classes.submitBtn}
                   >
                     Submit
-                  </Fab>
+                  </Fab></Fade>
                 </Grid>
-              </Fade>
+              
             </Grid>
             <br></br>
             <Collapse in={!this.state.hide}>
@@ -146,8 +147,8 @@ class Forms extends React.Component {
           onClose={this.handleClose}
           message="PLEASE FILL BOTH FIELD TO ADD A NEW DIARY"
         ></Snackbar>
-      </div>
-      </Grid>
+      
+      </Container>
     );
   }
 }
