@@ -2,14 +2,17 @@ export const addDairy = (diary) => {
   //async actions
 
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const profile = getState().firebase.profile;
+    console.log("profile ====>",profile)
+    const UID = getState().firebase.auth.uid;
     const firestore = getFirestore();
     firestore
       .collection("Diaries")
       .add({
         title: diary.title,
         description: diary.description,
-        user: "Mr.user",
-        userId: "1",
+        user: profile.name,
+        userId: UID,
         createdAt: new Date(),
       })
       .then(() => {

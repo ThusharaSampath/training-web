@@ -12,6 +12,8 @@ import Fade from "@material-ui/core/Fade";
 import { addDairy } from "../../redux/actions/DiaryActions";
 import { connect} from "react-redux";
 
+
+
 class Forms extends React.Component {
   state = {
     title: "",
@@ -75,6 +77,7 @@ class Forms extends React.Component {
   render() {
     const { classes } = this.props;
     return (
+      <Grid container spacing={3} style={{ margin: "20px", padding: "20px" ,width:"100%"}}>
       <div className={classes.container} onMouseLeave={this.collapse}>
         <FormControl fullWidth onSubmit={this.handleSubmit}>
           <div className="container">
@@ -144,6 +147,7 @@ class Forms extends React.Component {
           message="PLEASE FILL BOTH FIELD TO ADD A NEW DIARY"
         ></Snackbar>
       </div>
+      </Grid>
     );
   }
 }

@@ -6,12 +6,21 @@ const useStyles = (theme) => ({
     padding: "10px",
     overflow: "hidden",
     width: "325px",
+    //minWidth: "200px",
     backgroundColor: "lightskyblue",
-    
+   // float:"right" 
   },
   btn: {
     backgroundColor: "lightskyblue",
     boxShadow: "none",
+  },
+  title:{
+    textAlign: "left",
+    fontSize: "xx-large",
+  },
+  content:{
+    textAlign: "left",
+    
   },
   // Form styles
   submitBtn: {
@@ -21,7 +30,12 @@ const useStyles = (theme) => ({
   },
   container: {
     width: "80%",
-    alignItems: "center",
+    alignItems: "left",
+    textAlingment:"left",
+  },
+  date:{
+    textAlign: "left",
+    marginLeft:"10px",
   },
   textIpTitle: {
     padding: "5px",
@@ -31,7 +45,7 @@ const useStyles = (theme) => ({
     width: "60%",
     transition: "width 1s",
     borderBottom: "none",
-
+    left:"0",
     "&:hover": {
       width: "100%",
     },

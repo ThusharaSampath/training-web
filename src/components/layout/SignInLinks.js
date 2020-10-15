@@ -1,16 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { SignOutAction } from "../../redux/actions/AuthActions";
-
+import MenuItem from "@material-ui/core/MenuItem";
 
 const SignInLinks = (props) => {
   return (
     
     <div>
-        <NavLink to="/">Notifications</NavLink>     
-        <a href="/signin" onClick={props.signOut}>Sign Out</a>
-        <NavLink to="/">About</NavLink>
+        <MenuItem onClick={props.handleClose}>My Profile</MenuItem>
+        <MenuItem onClick={props.handleClose}>My Calender</MenuItem>
+        <MenuItem onClick={props.handleClose}>My Inbox</MenuItem>  
+        <MenuItem onClick={props.handleClose , props.signOut}>Log out</MenuItem>
      </div> 
   );
 };

@@ -1,12 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import MenuItem from "@material-ui/core/MenuItem";
 
-const SignOutLinks = () => {
+
+const SignOutLinks = (props) => {
   return (
     <div>
-        <NavLink to="/signin">Sign In</NavLink>
-      
-        <NavLink to="/">About</NavLink>
+
+        <NavLink to="/signup"><MenuItem onClick={props.handleClose}>Sign Up</MenuItem></NavLink>
+
    </div>
   );
 };

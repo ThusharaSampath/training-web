@@ -19,7 +19,7 @@ const useStyles = (theme) => ({
     },
     title: {
       color: "rgb(0, 158, 231)",
-      fontSize: "xx-large",
+      fontSize: "large",
     },
     
     container:{

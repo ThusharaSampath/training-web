@@ -4,81 +4,109 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import LOGO from "../../img/logo.svg";
-import { Link } from "react-router-dom";
 import SignInLinks from "./SignInLinks";
 import SignOutLinks from "./SignOutLinks";
 import { connect } from "react-redux";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import Menu from "@material-ui/core/Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  space: {
-    flexGrow: 1,
+    background: "none",
+    zIndex:"0"
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    marginLeft: "10px",
-  },
-  bar: {
-    backgroundColor: "rgb(0, 158, 231)",
-  },
-  action: {
-    float: "right",
-    display: "flex",
-    right: "0",
+    flexGrow: 1,
+   
   },
   logoS: {
     height: "20px",
-
-    zIndex: "0",
+    margin:"5px auto"
   },
 }));
 
-const NavBar = (props) => {
+const MenuAppBar = (props) => {
   const classes = useStyles();
-const {auth} = props
-// console.log(props)
-const links = auth.uid ?  <SignInLinks className={classes.space} />:<SignOutLinks className={classes.space} />
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const { auth,  } = props;
+  //const { auth, profile } = props; profile has access to user data
+  const links = auth.uid ? (
+    <SignInLinks className={classes.space} handleClose={handleClose} />
+  ) : (
+    <SignOutLinks className={classes.space} handleClose={handleClose} />
+  );
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.bar}>
+      <AppBar position="static"  className={classes.root}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Link to="/home">
-            <Typography variant="h6" className={classes.title}>
-              <img
-                src={LOGO}
-                className={classes.logoS}
-                alt="just floating logo"
-              ></img>{" "}
-              Dear-Dairy
-            </Typography>
-          </Link>
-          <div className={classes.action}>
-            {links}
-          </div>
+           <img
+              src={LOGO}
+              className={classes.logoS}
+              alt="just floating logo"
+            ></img>
+          <Typography variant="h4" className={classes.title}>
+           
+            Dear-Diary
+          </Typography>
+          <NotificationsIcon />
+          {auth.uid && (
+            <div>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                {links}
+              </Menu>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </div>
   );
 };
+
+
 const mapStateToProps = (state) => {
-  
+  console.log(state);
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    profile: state.firebase.profile,
   };
 };
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps)(MenuAppBar);
