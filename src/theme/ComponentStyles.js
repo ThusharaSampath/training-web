@@ -47,6 +47,7 @@ const useStyles = (theme) => ({
     alignItems: "left",
     textAlingment: "left",
     margin:"25px",
+    right:"250px"
    
    // backgroundColor: "green",
   },

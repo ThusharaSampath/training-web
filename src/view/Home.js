@@ -17,19 +17,23 @@ export class Home extends Component {
     spinnerHide: true,
   };
 
-  
   render() {
     return (
       <div
         className="container"
-        // style={{
-        //   alignItems: "center",
-        //   padding: "2vw 2vh",
-        //   textAlign: "center",
-        // }}
+        style={{
+          //backgroundColor:"red",
+          width:"100%",
+          margin:"auto"
+        }}
       >
         <br></br>
-        <h1 style={{ color: "white",opacity:"0.6",marginLeft:"25px" }}>HOME</h1>
+        <div style={{ left: "0"  ,
+          padding: "2vw 2vh",
+          textAlign: "left",
+          margin:"30px"}}>
+          <h1 style={{ color: "white", opacity: "0.6"}}>HOME</h1>
+        </div>
         <Forms></Forms>
         <LinearProgress hidden={this.state.spinnerHide}></LinearProgress>
         <div>
@@ -40,7 +44,8 @@ export class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => { //auth does not map i dont know why ;(
+const mapStateToProps = (state) => {
+  //auth does not map i dont know why ;(
   return {
     auth: state.firebase.auth,
   };
